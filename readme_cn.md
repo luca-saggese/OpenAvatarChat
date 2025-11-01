@@ -1,7 +1,7 @@
 <h1 style='text-align: center; margin-bottom: 1rem'> Open Avatar Chat </h1>
 
 <p align="center">
-<strong>中文 | <a href="readme_en.md">English</a></strong>
+<strong><a href="README.md">Italiano</a> | <a href="readme_en.md">English</a>< | 中文</strong>
 </p>
 
 
