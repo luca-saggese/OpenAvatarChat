@@ -23,6 +23,11 @@ RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
 ARG WORK_DIR=/root/open-avatar-chat
 WORKDIR $WORK_DIR
 
+# Initialize git submodules
+COPY .git .git
+COPY .gitmodules .gitmodules
+RUN git submodule update --init --recursive
+
 # Install core dependencies
 COPY ./install.py $WORK_DIR/install.py
 COPY ./pyproject.toml $WORK_DIR/pyproject.toml
