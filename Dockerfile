@@ -16,7 +16,8 @@ RUN apt-get clean && \
     apt-get install -y --allow-unauthenticated software-properties-common && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt-get update --allow-insecure-repositories && \
-    apt-get install -y --allow-unauthenticated python3.11 python3.11-dev python3.11-venv python3.11-distutils python3-pip git libgl1 libglib2.0-0 bash
+    apt-get install -y --allow-unauthenticated python3.11 python3.11-dev python3.11-venv python3.11-distutils python3-pip git git-lfs libgl1 libglib2.0-0 bash && \
+    git lfs install
 
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1 && \
     python3.11 -m ensurepip --upgrade && \
