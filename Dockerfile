@@ -16,7 +16,7 @@ RUN apt-get clean && \
     apt-get install -y --allow-unauthenticated software-properties-common && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt-get update --allow-insecure-repositories && \
-    apt-get install -y --allow-unauthenticated python3.11 python3.11-dev python3.11-venv python3.11-distutils python3-pip git libgl1 libglib2.0-0
+    apt-get install -y --allow-unauthenticated python3.11 python3.11-dev python3.11-venv python3.11-distutils python3-pip git libgl1 libglib2.0-0 bash
 
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1 && \
     python3.11 -m ensurepip --upgrade && \
@@ -63,12 +63,12 @@ RUN chmod +x $WORK_DIR/scripts/download_liteavatar_weights.sh && \
     chmod +x $WORK_DIR/scripts/download_MiniCPM-o_2.6-int4.sh && \
     chmod +x $WORK_DIR/scripts/download_MiniCPM-o_2.6.sh && \
     # Download LiteAvatar weights
-    $WORK_DIR/scripts/download_liteavatar_weights.sh && \
+    bash $WORK_DIR/scripts/download_liteavatar_weights.sh && \
     # Download MiniCPM-o 2.6 int4 weights
-    $WORK_DIR/scripts/download_MiniCPM-o_2.6-int4.sh 
+    bash $WORK_DIR/scripts/download_MiniCPM-o_2.6-int4.sh 
     # && \
     # Download MiniCPM-o 2.6 fp16 weights
-    #$WORK_DIR/scripts/download_MiniCPM-o_2.6.sh
+    #bash $WORK_DIR/scripts/download_MiniCPM-o_2.6.sh
 
 # Execute post-config installation script
 RUN chmod +x $WORK_DIR/scripts/post_config_install.sh && \
