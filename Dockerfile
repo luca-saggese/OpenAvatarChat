@@ -10,11 +10,13 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/source
     sed -i 's/security.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
 
 # Update package list and install required dependencies
-RUN apt-get update && \
-    apt-get install -y software-properties-common && \
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get update --allow-insecure-repositories && \
+    apt-get install -y --allow-unauthenticated software-properties-common && \
     add-apt-repository ppa:deadsnakes/ppa && \
-    apt-get update && \
-    apt-get install -y python3.11 python3.11-dev python3.11-venv python3.11-distutils python3-pip git libgl1 libglib2.0-0
+    apt-get update --allow-insecure-repositories && \
+    apt-get install -y --allow-unauthenticated python3.11 python3.11-dev python3.11-venv python3.11-distutils python3-pip git libgl1 libglib2.0-0
 
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1 && \
     python3.11 -m ensurepip --upgrade && \
