@@ -39,8 +39,10 @@ ADD ./src $WORK_DIR/src
 ADD ./scripts $WORK_DIR/scripts
 
 # Execute pre-config installation script
+#ARG CONFIG_FILE=config/chat_with_openai_compatible.yaml
 RUN echo "Using config file: ${CONFIG_FILE}"
-COPY $CONFIG_FILE /tmp/build_config.yaml
+#COPY $CONFIG_FILE /tmp/build_config.yaml
+COPY config/chat_with_openai_compatible.yaml /tmp/build_config.yaml
 RUN chmod +x $WORK_DIR/scripts/pre_config_install.sh && \
     $WORK_DIR/scripts/pre_config_install.sh --config /tmp/build_config.yaml
 
