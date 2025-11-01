@@ -73,11 +73,11 @@ HuggingFace
   <tr>
     <td align="center">
       <h3>LiteAvatar</h3>
-      <video controls src="https://github.com/user-attachments/assets/2861200-84b0-4c7a-93f0-f46268a0878b"></video>
+      <video controls src="https://github.com/user-attachments/assets/e2861200-84b0-4c7a-93f0-f46268a0878b"></video>
     </td>
     <td align="center">
       <h3>LAM</h3>
-      <video controls src="https://github.com/user-attachments/assets/72a8c33-39dd-4656-a4a9-b76c5487c711"></video>
+      <video controls src="https://github.com/user-attachments/assets/a72a8c33-39dd-4656-a4a9-b76c5487c711"></video>
     </td>
   </tr>
 </table>
