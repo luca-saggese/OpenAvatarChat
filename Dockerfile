@@ -50,6 +50,26 @@ RUN uv run install.py \
     --uv \
     --skip-core
 
+RUN echo "Downloading model weights..."
+ADD ./scripts/download_liteavatar_weights.sh $WORK_DIR/scripts/download_liteavatar_weights.sh
+ADD ./scripts/download_MiniCPM-o_2.6-int4.sh $WORK_DIR/scripts/download_MiniCPM-o_2.6-int4.sh
+ADD ./scripts/download_MiniCPM-o_2.6.sh $WORK_DIR/scripts/download_MiniCPM-o_2.6.sh
+# Files added:
+#   download_liteavatar_weights.sh
+#   download_MiniCPM-o_2.6-int4.sh
+#   download_MiniCPM-o_2.6.sh
+
+RUN chmod +x $WORK_DIR/scripts/download_liteavatar_weights.sh && \
+    chmod +x $WORK_DIR/scripts/download_MiniCPM-o_2.6-int4.sh && \
+    chmod +x $WORK_DIR/scripts/download_MiniCPM-o_2.6.sh && \
+    # Download LiteAvatar weights
+    $WORK_DIR/scripts/download_liteavatar_weights.sh && \
+    # Download MiniCPM-o 2.6 int4 weights
+    $WORK_DIR/scripts/download_MiniCPM-o_2.6-int4.sh 
+    # && \
+    # Download MiniCPM-o 2.6 fp16 weights
+    #$WORK_DIR/scripts/download_MiniCPM-o_2.6.sh
+
 # Execute post-config installation script
 RUN chmod +x $WORK_DIR/scripts/post_config_install.sh && \
     $WORK_DIR/scripts/post_config_install.sh --config /tmp/build_config.yaml && \
