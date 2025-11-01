@@ -38,22 +38,23 @@ ADD ./src $WORK_DIR/src
 # Copy script files (must be copied before installing config dependencies)
 ADD ./scripts $WORK_DIR/scripts
 
+# Copy config directory
+COPY ./config $WORK_DIR/config
+
 # Execute pre-config installation script
-RUN echo "Using config file: ${CONFIG_FILE}"
-COPY $CONFIG_FILE /tmp/build_config.yaml
-RUN chmod +x $WORK_DIR/scripts/pre_config_install.sh && \
-    $WORK_DIR/scripts/pre_config_install.sh --config /tmp/build_config.yaml
+RUN echo "Using config file: ${CONFIG_FILE}" && \
+    chmod +x $WORK_DIR/scripts/pre_config_install.sh && \
+    $WORK_DIR/scripts/pre_config_install.sh --config $WORK_DIR/${CONFIG_FILE}
 
 # Install config dependencies
 RUN uv run install.py \
-    --config /tmp/build_config.yaml \
+    --config $WORK_DIR/${CONFIG_FILE} \
     --uv \
     --skip-core
 
 # Execute post-config installation script
 RUN chmod +x $WORK_DIR/scripts/post_config_install.sh && \
-    $WORK_DIR/scripts/post_config_install.sh --config /tmp/build_config.yaml && \
-    rm /tmp/build_config.yaml
+    $WORK_DIR/scripts/post_config_install.sh --config $WORK_DIR/${CONFIG_FILE}
 
 ADD ./resource $WORK_DIR/resource
 ADD ./.env* $WORK_DIR/
