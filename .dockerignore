@@ -217,3 +217,5 @@ results/
 *.backup
 *.old
 *.orig
+
+build_and_run.sh
