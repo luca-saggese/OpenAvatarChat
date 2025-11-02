@@ -21,6 +21,6 @@ docker run --rm --gpus all -it --name open-avatar-chat \
     -v `pwd`/ssl_certs:/root/open-avatar-chat/ssl_certs \
     -v `pwd`/config:/root/open-avatar-chat/config \
     -v `pwd`/models/musetalk/s3fd-619a316812/:/root/.cache/torch/hub/checkpoints/ \
-    -p 8282:8282 \
+    -p 8087:8282 \
     open-avatar-chat:0.0.1 \
     --config ${CONFIG_PATH}
