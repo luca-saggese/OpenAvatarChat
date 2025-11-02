@@ -55,16 +55,22 @@ RUN echo "Downloading model weights..."
 ADD ./scripts/download_liteavatar_weights.sh $WORK_DIR/scripts/download_liteavatar_weights.sh
 ADD ./scripts/download_MiniCPM-o_2.6-int4.sh $WORK_DIR/scripts/download_MiniCPM-o_2.6-int4.sh
 ADD ./scripts/download_MiniCPM-o_2.6.sh $WORK_DIR/scripts/download_MiniCPM-o_2.6.sh
+ADD ./src/handlers/avatar/liteavatar/algo/liteavatar/download_model.sh $WORK_DIR/src/handlers/avatar/liteavatar/algo/liteavatar/download_model.sh
 # Files added:
 #   download_liteavatar_weights.sh
 #   download_MiniCPM-o_2.6-int4.sh
 #   download_MiniCPM-o_2.6.sh
+#   download_model.sh (LiteAvatar + Paraformer)
 
 RUN chmod +x $WORK_DIR/scripts/download_liteavatar_weights.sh && \
     chmod +x $WORK_DIR/scripts/download_MiniCPM-o_2.6-int4.sh && \
     chmod +x $WORK_DIR/scripts/download_MiniCPM-o_2.6.sh && \
+    chmod +x $WORK_DIR/src/handlers/avatar/liteavatar/algo/liteavatar/download_model.sh && \
     # Download LiteAvatar weights
-    bash $WORK_DIR/scripts/download_liteavatar_weights.sh 
+    bash $WORK_DIR/scripts/download_liteavatar_weights.sh && \
+    # Download LiteAvatar model and Paraformer weights
+    cd $WORK_DIR/src/handlers/avatar/liteavatar/algo/liteavatar && \
+    bash download_model.sh
 
     # Download MiniCPM-o 2.6 int4 weights
     # bash $WORK_DIR/scripts/download_MiniCPM-o_2.6-int4.sh 
