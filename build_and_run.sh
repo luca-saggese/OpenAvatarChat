@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-CONFIG_PATH="config/chat_with_minicpm.yaml"
+CONFIG_PATH="config/chat_with_openai_compatible.yaml"
 
 while [[ "$#" -gt 0 ]]; do
     case $1 in
