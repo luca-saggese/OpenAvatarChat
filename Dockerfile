@@ -1,7 +1,7 @@
 FROM nvidia/cuda:12.2.2-cudnn8-devel-ubuntu22.04
 LABEL authors="HumanAIGC-Engineering"
 
-ARG CONFIG_FILE=config/chat_with_minicpm.yaml
+ARG CONFIG_FILE=config/chat_with_openai_compatible.yaml
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -64,10 +64,11 @@ RUN chmod +x $WORK_DIR/scripts/download_liteavatar_weights.sh && \
     chmod +x $WORK_DIR/scripts/download_MiniCPM-o_2.6-int4.sh && \
     chmod +x $WORK_DIR/scripts/download_MiniCPM-o_2.6.sh && \
     # Download LiteAvatar weights
-    bash $WORK_DIR/scripts/download_liteavatar_weights.sh && \
+    bash $WORK_DIR/scripts/download_liteavatar_weights.sh 
+
     # Download MiniCPM-o 2.6 int4 weights
-    bash $WORK_DIR/scripts/download_MiniCPM-o_2.6-int4.sh 
-    # && \
+    # bash $WORK_DIR/scripts/download_MiniCPM-o_2.6-int4.sh 
+
     # Download MiniCPM-o 2.6 fp16 weights
     #bash $WORK_DIR/scripts/download_MiniCPM-o_2.6.sh
 
