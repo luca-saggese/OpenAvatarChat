@@ -67,6 +67,7 @@ RUN chmod +x $WORK_DIR/scripts/download_liteavatar_weights.sh && \
     chmod +x $WORK_DIR/src/handlers/avatar/liteavatar/algo/liteavatar/download_model.sh 
 
 # Download LiteAvatar weights
+RUN echo "force rebuild: $(date +%s)" && bash /root/open-avatar-chat/scripts/download_liteavatar_weights.sh
 RUN bash /root/open-avatar-chat/scripts/download_liteavatar_weights.sh 
     # Download LiteAvatar model and Paraformer weights
 
